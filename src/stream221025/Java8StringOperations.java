@@ -1,12 +1,11 @@
 package stream221025;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-public class Java8Operations {
+public class Java8StringOperations {
     public static void main(String[] args) {
 
         sumofDigit(123);

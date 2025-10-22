@@ -1,6 +1,7 @@
 package stream201025;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -20,6 +21,9 @@ public class StudentMain {
 
       List<String> result1 = students.stream().filter(i->i.getGrade()>70).map(i->i.getStudentName()).collect(Collectors.toList());
       result1.forEach(System.out::println);
+
+      System.out.println("Students sorted by grade in descending order:");
+      students.stream().sorted(Comparator.comparingInt(Student::getGrade).reversed()).collect(Collectors.toList()).forEach(System.out::println);
 
 
     }
