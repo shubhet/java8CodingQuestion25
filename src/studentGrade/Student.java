@@ -1,4 +1,4 @@
-package stream201025;
+package studentGrade;
 
 
 public class Student {

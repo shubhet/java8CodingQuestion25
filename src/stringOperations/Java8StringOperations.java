@@ -1,4 +1,4 @@
-package stream221025;
+package stringOperations;
 
 import java.util.List;
 import java.util.Map;
