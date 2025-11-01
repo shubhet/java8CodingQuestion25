@@ -12,6 +12,7 @@ public class Java8StringOperations {
         countVowels("Hello World");
         countEachCharacter("hello world");
         coundWordsInList(List.of("apple", "banana", "apple", "orange", "banana", "apple"));
+        printDistinctCharacters("hello world");
     }
 
     static void sumofDigit(int n) {
@@ -37,6 +38,10 @@ public class Java8StringOperations {
         words.stream().collect(Collectors.groupingBy(i->i, Collectors.counting()))
                 .forEach((i, j)->System.out.println(i+"==="+j));
 
+    }
+
+    static void printDistinctCharacters(String s){
+        s.chars().mapToObj(c->(char)c).distinct().forEach(System.out::println);
     }
 
 
