@@ -17,11 +17,22 @@ public class CustomerSpendsMain {
 
         );
 
-        Map<String, Double> map = list.stream().collect(Collectors.groupingBy(CustomerSpends::getCustomer, Collectors.summingDouble(CustomerSpends::getAmount)));
+//        Map<String, Double> map = list.stream().collect(Collectors.groupingBy(CustomerSpends::getCustomer, Collectors.summingDouble(CustomerSpends::getAmount)));
+//
+//        //top 3 customers by spend
+//
+//        map.entrySet().stream().sorted(Map.Entry.<String, Double>comparingByValue().reversed()).limit(3).forEach(i -> System.out.println(i.getKey() + ": " + i.getValue()));
 
-        //top 3 customers by spend
+        
+       Map<String, Double> customerSpendsByGroup = list.stream().collect(Collectors.groupingBy(CustomerSpends::getCustomer, Collectors.summingDouble(CustomerSpends::getAmount)));
 
-        map.entrySet().stream().sorted(Map.Entry.<String, Double>comparingByValue().reversed()).limit(3).forEach(i -> System.out.println(i.getKey() + ": " + i.getValue()));
+//       customerSpendsByGroup.entrySet().stream().sorted(Map.Entry.<String, Double>comparingByValue().reversed()).limit(3).forEach(i->System.out.println(i.getKey()+" =="+i.getValue()));
+//
+//
+//        for(Map.Entry<String, Double> entry : customerSpendsByGroup.entrySet()) {
+//            System.out.println(entry.getKey() + ": " + entry.getValue());
+//        }
 
-    }
+        customerSpendsByGroup.forEach((i, j) -> System.out.println(i + "===" + j));
+       }
 }
