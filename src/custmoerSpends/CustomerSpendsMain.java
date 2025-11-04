@@ -33,6 +33,11 @@ public class CustomerSpendsMain {
 //            System.out.println(entry.getKey() + ": " + entry.getValue());
 //        }
 
-        customerSpendsByGroup.forEach((i, j) -> System.out.println(i + "===" + j));
+//        customerSpendsByGroup.forEach((i, j) -> System.out.println(i + "===" + j));
+
+
+       Map<String, Double> listOfSpends = list.stream().collect(Collectors.groupingBy(CustomerSpends::getCustomer, Collectors.summingDouble(CustomerSpends::getAmount)));
+
+       listOfSpends.entrySet().stream().sorted(Map.Entry.<String,Double>comparingByValue().reversed()).limit(3).forEach(i->System.out.println(i.getKey()+" : "+i.getValue()));
        }
 }
