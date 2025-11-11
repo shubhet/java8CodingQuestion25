@@ -1,0 +1,25 @@
+package EmployeeDepartment;
+
+import java.util.*;
+import java.util.stream.Collectors;
+
+public class EmployeeEntityMain {
+
+    public static void main(String[] args) {
+        List<EmployeeEntity> list = new ArrayList<>();
+        list.add(new EmployeeEntity(1, "AAA", "HR", 50000));
+        list.add(new EmployeeEntity(2, "BBB", "IT", 90000));
+        list.add(new EmployeeEntity(3, "CCC", "Finance", 55000));
+        list.add(new EmployeeEntity(1, "DDD", "HR", 80000));
+        list.add(new EmployeeEntity(2, "EEE", "IT", 70000));
+        list.add(new EmployeeEntity(3, "FFF", "Finance", 45000));
+
+        //department  wise highest salary
+
+        Map<String, Optional<EmployeeEntity>> map = list.stream().collect(Collectors.groupingBy(EmployeeEntity::getDepartment, Collectors.maxBy(Comparator.comparingDouble(EmployeeEntity::getSalary))));
+
+        map.forEach((i, j) -> System.out.println(i + " " + j.get().getName() + " " + j.get().getSalary()));
+
+
+    }
+}
