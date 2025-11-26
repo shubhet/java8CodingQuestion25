@@ -26,13 +26,20 @@ public class EmployeeEntityMain {
        list.stream().sorted(Comparator.comparingDouble(EmployeeEntity::getId).reversed()).collect(Collectors.toList()).forEach(System.out::println);
 
 
-       //department wise top3 highest salary
+       //department wise top3 highest salary with Employee object
 
       Map<String, List<EmployeeEntity>> mapValue =  list.stream().collect(Collectors.groupingBy(EmployeeEntity::getDepartment,
                 Collectors.collectingAndThen(Collectors.toList(),
                         empList-> empList.stream().sorted(Comparator.comparingDouble(EmployeeEntity::getSalary).reversed()).limit(3).collect(Collectors.toList()))));
 
       mapValue.forEach((i, j)-> System.out.println("Department"+i+" === "+j+"Employee"));
+
+
+        //department wise top3 highest salary with Employee id only
+
+        mapValue.forEach((i, j)->
+                System.out.println("Department "+i+"==== "+j.stream().map(EmployeeEntity::getId).toList())
+         );
 
     }
 }
