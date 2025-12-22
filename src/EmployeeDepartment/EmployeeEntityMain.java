@@ -41,5 +41,11 @@ public class EmployeeEntityMain {
                 System.out.println("Department "+i+"==== "+j.stream().map(EmployeeEntity::getId).toList())
          );
 
+
+
+
+       Map<String, List<EmployeeEntity>> data = list.stream().collect(Collectors.groupingBy(EmployeeEntity::getDepartment, Collectors.collectingAndThen(Collectors.toList(), i->i.stream().sorted(Comparator.comparingDouble(EmployeeEntity::getSalary).reversed()).limit(3).collect(Collectors.toList()))));
+        System.out.println("Final Data!!");
+         data.forEach((i, j)-> System.out.println(i+" "+j));
     }
 }
