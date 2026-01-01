@@ -1,5 +1,6 @@
 package stringOperations;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -8,11 +9,12 @@ import java.util.stream.IntStream;
 public class Java8StringOperations {
     public static void main(String[] args) {
 
-        sumofDigit(123);
-        countVowels("Hello World");
-        countEachCharacter("hello world");
+       // sumofDigit(123);
+      //  countVowels("Hello World");
+      //  countEachCharacter("hello world");
+          countEachWordInString("hello world hello everyone");
         coundWordsInList(List.of("apple", "banana", "apple", "orange", "banana", "apple"));
-        printDistinctCharacters("hello world");
+      //  printDistinctCharacters("hello world");
     }
 
     static void sumofDigit(int n) {
@@ -35,14 +37,23 @@ public class Java8StringOperations {
     }
 
     static void coundWordsInList(List<String> words){
-        words.stream().collect(Collectors.groupingBy(i->i, Collectors.counting()))
-                .forEach((i, j)->System.out.println(i+"==="+j));
+      words.stream().collect(Collectors.groupingBy(i->i, Collectors.counting())).forEach((i,j)->System.out.println(i+"==="+j));
 
     }
 
     static void printDistinctCharacters(String s){
         s.chars().mapToObj(c->(char)c).distinct().forEach(System.out::println);
     }
+
+    //count words from string
+
+    static void countEachWordInString(String s1){
+        String[] s = s1.split("\\s+");
+        Arrays.stream(s).collect(Collectors.groupingBy(i->i, Collectors.counting())).forEach((i,j)->System.out.println(i+"==="+j));
+    }
+
+
+
 
 
 

@@ -25,6 +25,9 @@ public class StudentMain {
       System.out.println("Students sorted by grade in descending order:");
       students.stream().sorted(Comparator.comparingInt(Student::getGrade).reversed()).collect(Collectors.toList()).forEach(System.out::println);
 
+      //top 3 grade students
+        System.out.println("Top 3 students with highest grades:");
+        students.stream().sorted(Comparator.comparing(Student::getGrade).reversed()).limit(3).forEach(System.out::println);
 
     }
 }
