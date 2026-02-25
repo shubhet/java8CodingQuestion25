@@ -27,6 +27,8 @@ public class ListOperation {
         System.out.println("Max: " + max);
         System.out.println("Min: " + min);
 
+        list.stream().mapToInt(Integer::intValue).sum();
+
 
     }
 }

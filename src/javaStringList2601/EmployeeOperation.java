@@ -24,39 +24,61 @@ public class EmployeeOperation {
 
                 ));
 
-        //employee department wise grouping
-        System.out.println("Employee department wise grouping:");
-        Map<String, List<EmployeeDto>> employeeDepartmentWise = list.stream().collect(Collectors.groupingBy(EmployeeDto::getDepartment, Collectors.toList()));
-
-        employeeDepartmentWise.forEach((i, j) -> System.out.println(i + " : " + j));
-
-
-        //department wise average salary
-        Map<String, Double> departmentWiseAverageSalary = list.stream().collect(Collectors.groupingBy(EmployeeDto::getDepartment, Collectors.averagingDouble(EmployeeDto::getSalary)));
-        departmentWiseAverageSalary.forEach((i, j) -> System.out.println("Department: " + i + ", Average Salary: " + j));
+//        //employee department wise grouping
+//        System.out.println("Employee department wise grouping:");
+//        Map<String, List<EmployeeDto>> employeeDepartmentWise = list.stream().collect(Collectors.groupingBy(EmployeeDto::getDepartment, Collectors.toList()));
+//
+//        employeeDepartmentWise.forEach((i, j) -> System.out.println(i + " : " + j));
+//
+//
+//        //department wise average salary
+//        Map<String, Double> departmentWiseAverageSalary = list.stream().collect(Collectors.groupingBy(EmployeeDto::getDepartment, Collectors.averagingDouble(EmployeeDto::getSalary)));
+//        departmentWiseAverageSalary.forEach((i, j) -> System.out.println("Department: " + i + ", Average Salary: " + j));
 
         //Each department wise highest salary of employee
 
-        Map<String, EmployeeDto> departmentWiseHighestSalary = list.stream().collect(Collectors.groupingBy(EmployeeDto::getDepartment,
+//        Map<String, EmployeeDto> departmentWiseHighestSalary = list.stream().collect(Collectors.groupingBy(EmployeeDto::getDepartment,
+//                Collectors.collectingAndThen(
+//                        Collectors.maxBy(Comparator.comparing(EmployeeDto::getSalary)), Optional::get)
+//        ));
+//
+//        departmentWiseHighestSalary.forEach((i, j) ->
+//                System.out.println("Department: " + i + ", Employee with Highest Salary: " + j));
+//
+//
+//        //department wise top3 highest salary of employee
+//        Map<String, List<EmployeeDto>> departmentWiseTop3SalaryPerson = list.stream().collect(Collectors.groupingBy(EmployeeDto::getDepartment,
+//                Collectors.collectingAndThen(
+//                        Collectors.toList(),
+//                        data -> data.stream().sorted(Comparator.comparing(EmployeeDto::getSalary).reversed()).limit(3).collect(Collectors.toList()
+//
+//                        ))));
+//
+//        departmentWiseTop3SalaryPerson.forEach((i, j) ->
+//                System.out.println("Department: " + i + ", Top 3 Employees with Highest Salary: " + j)
+//        );
+
+        //deaprtment wise average salary
+        Map<String, Double> departmentWiseAverageSalaryResult = list.stream().collect(Collectors.groupingBy(EmployeeDto::getDepartment, Collectors.averagingDouble(EmployeeDto::getSalary)));
+         departmentWiseAverageSalaryResult.entrySet().stream().sorted(Map.Entry.<String,Double>comparingByValue().reversed()).forEach(System.out::println);
+
+
+         //department wise highest salary
+        list.stream().collect(Collectors.groupingBy(EmployeeDto::getDepartment,
                 Collectors.collectingAndThen(
-                        Collectors.maxBy(Comparator.comparing(EmployeeDto::getSalary)), Optional::get)
-        ));
+                        Collectors.maxBy(Comparator.comparing(EmployeeDto::getSalary)),Optional::get
+                ))).forEach((i,j)->System.out.println(i+"==="+j));
 
-        departmentWiseHighestSalary.forEach((i, j) ->
-                System.out.println("Department: " + i + ", Employee with Highest Salary: " + j));
+        //department wise top3 salaried emp
+        System.out.println("Department wise top 3 salaried emp");
 
-
-        //department wise top3 highest salary of employee
-        Map<String, List<EmployeeDto>> departmentWiseTop3SalaryPerson = list.stream().collect(Collectors.groupingBy(EmployeeDto::getDepartment,
+        list.stream().collect(Collectors.groupingBy(EmployeeDto::getDepartment,
                 Collectors.collectingAndThen(
                         Collectors.toList(),
-                        data -> data.stream().sorted(Comparator.comparing(EmployeeDto::getSalary).reversed()).limit(3).collect(Collectors.toList()
+                        data->data.stream().sorted(Comparator.comparing(EmployeeDto::getSalary).reversed()).limit(3).collect(Collectors.toList())
+                ))).forEach((i,j)->System.out.println(i+"====="+j));
 
-                        ))));
 
-        departmentWiseTop3SalaryPerson.forEach((i, j) ->
-                System.out.println("Department: " + i + ", Top 3 Employees with Highest Salary: " + j)
-        );
 
 
     }
